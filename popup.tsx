@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { supabase } from "~lib/supabase"
+import { supabase, hasSupabaseConfig } from "~lib/supabase"
 import { Button } from "~components/ui/button"
 import { Input } from "~components/ui/input"
 import { Label } from "~components/ui/label"
@@ -14,6 +14,11 @@ function IndexPopup() {
   const [message, setMessage] = useState("")
 
   useEffect(() => {
+    if (!hasSupabaseConfig) {
+      setMessage("Please configure your Supabase credentials in .env.local")
+      return
+    }
+
     // Check if user is already logged in
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)

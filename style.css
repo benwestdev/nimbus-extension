@@ -67,3 +67,28 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Extension specific styles for better isolation */
+[data-plasmo-extension] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Ensure button styles are applied with high specificity */
+[data-plasmo-extension] button {
+  all: unset;
+  box-sizing: border-box;
+}
+
+/* Loader animation for better compatibility */
+@keyframes plasmo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: plasmo-spin 1s linear infinite;
+}
